@@ -2,13 +2,15 @@
 #include <stdlib.h>
 #include <time.h>
 #include "matrix.h"
+#include "expectimax.h"
 
 int main(int argc, char *argv[]) {
     time_t t;
     srand((unsigned) time(&t));
-
+    
+    // testing code
     matrix mat;
-    init_matrix(&mat, 0);
+    init_matrix(&mat);
     //spawn_tile(&mat);
     //spawn_tile(&mat);
     mat.grid[0][0] = 4;
@@ -31,5 +33,8 @@ int main(int argc, char *argv[]) {
     matrix north3 = push_east(&north2);
     print_matrix(&north3);
     printf("%d\n", north3.zeroes);
+
+    action a = expectimax(&mat, 0, 0);
+    printf("%d\n", a.move);
     return 0;
 }

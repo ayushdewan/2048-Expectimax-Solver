@@ -3,11 +3,10 @@
 
 typedef struct matrix {
     int grid[4][4]; // grid: 2048 grid, level: 0 = probabilistic (max of children), 1 = expected value summation of children
-    int level;
     int zeroes; // number of zeroes in the grid
 } matrix;
 
-void init_matrix(matrix *mat, int level);
+void init_matrix(matrix *mat);
 void spawn_tile(matrix *mat);
 void print_matrix(matrix *mat);
 matrix push_north(matrix *mat);

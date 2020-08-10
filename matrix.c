@@ -2,13 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void init_matrix(matrix *mat, int level) {
+void init_matrix(matrix *mat) {
     for(int i = 0; i < 4; i++) {
         for(int j = 0; j < 4; j++) {
             mat->grid[i][j] = 0;
         }
     }
-    mat->level = level;
     mat->zeroes = 16;
 }
 
@@ -38,7 +37,7 @@ void print_matrix(matrix *mat) {
 
 matrix push_north(matrix *mat) {
     matrix result;
-    init_matrix(&result, 1);
+    init_matrix(&result);
     result.zeroes = mat->zeroes;
     for(int j = 0; j < 4; j++) {
         int i = 0;
@@ -71,7 +70,7 @@ matrix push_north(matrix *mat) {
 
 matrix push_south(matrix *mat) {
     matrix result;
-    init_matrix(&result, 1);
+    init_matrix(&result);
     result.zeroes = mat->zeroes;
     for(int j = 0; j < 4; j++) {
         int i = 3;
@@ -104,7 +103,7 @@ matrix push_south(matrix *mat) {
 
 matrix push_east(matrix *mat) {
     matrix result;
-    init_matrix(&result, 1);
+    init_matrix(&result);
     result.zeroes = mat->zeroes;
     for(int i = 0; i < 4; i++) {
         int j = 3;
@@ -137,7 +136,7 @@ matrix push_east(matrix *mat) {
 
 matrix push_west(matrix *mat) {
     matrix result;
-    init_matrix(&result, 1);
+    init_matrix(&result);
     result.zeroes = mat->zeroes;
     for(int i = 0; i < 4; i++) {
         int j = 0;
