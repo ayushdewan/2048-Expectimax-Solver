@@ -20,21 +20,9 @@ int main(int argc, char *argv[]) {
     mat.grid[3][3] = 4;
     mat.zeroes = 8;
     print_matrix(&mat);
-    printf("%d\n", mat.zeroes);    
+    puts("");
     
-    matrix north = push_east(&mat);
-    print_matrix(&north);
-    printf("%d\n", north.zeroes);
-    
-    matrix north2 = push_south(&north);
-    print_matrix(&north2);
-    printf("%d\n", north2.zeroes);
-
-    matrix north3 = push_east(&north2);
-    print_matrix(&north3);
-    printf("%d\n", north3.zeroes);
-
-    action a = expectimax(&mat, 0, 0);
-    printf("%d\n", a.move);
+    action a = expectimax(&mat, 0, 2);
+    printf("%d %.2f\n", a.move, a.value);
     return 0;
 }

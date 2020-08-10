@@ -10,5 +10,6 @@ typedef struct action {
 
 
 action expectimax(matrix *state, int depth, int max_depth);
+double value(matrix *state);
 
 #endif
