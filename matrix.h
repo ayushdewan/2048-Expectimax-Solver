@@ -13,5 +13,6 @@ matrix push_north(matrix *mat);
 matrix push_south(matrix *mat);
 matrix push_east(matrix *mat);
 matrix push_west(matrix *mat);
+int is_equal(matrix *a, matrix *b);
 
 #endif

@@ -35,6 +35,15 @@ void print_matrix(matrix *mat) {
     }
 }
 
+int is_equal(matrix *a, matrix *b) {
+    if(a->zeroes != b->zeroes) return 0;
+    for(int i = 0; i < 4; i++) 
+        for(int j = 0; j < 4; j++) 
+            if(a->grid[i][j] != b->grid[i][j]) 
+                return 0;
+    return 1;
+}
+
 matrix push_north(matrix *mat) {
     matrix result;
     init_matrix(&result);

@@ -6,14 +6,13 @@ double value(matrix *state) {
 }
 
 action expectimax(matrix *state, int depth, int max_depth) {
-    action a;
-    a.value = 0.0;
-    a.move = -1;
+    action a = {-1, 0.0};
     if(depth == 2 * max_depth) {
         a.value = value(state);
     } else if(depth % 2 == 0) {
         matrix next_state[4] = {push_north(state), push_south(state), push_east(state), push_west(state)};
         for(int i = 0; i < 4; i++) {
+            if(is_equal(state, next_state + i)) continue;
             double val = expectimax(next_state + i, depth + 1, max_depth).value;
             if(val > a.value) {
                 a.value = val;

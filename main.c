@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     print_matrix(&mat);
     puts("");
     
-    action a = expectimax(&mat, 0, 2);
+    action a = expectimax(&mat, 0, 4);
     printf("%d %.2f\n", a.move, a.value);
     return 0;
 }
