@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
     print_matrix(&mat);
     printf("%d\n", mat.zeroes);    
     
-    matrix north = push_south(&mat);
+    matrix north = push_east(&mat);
     print_matrix(&north);
     printf("%d\n", north.zeroes);
     
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
     print_matrix(&north2);
     printf("%d\n", north2.zeroes);
 
-    matrix north3 = push_south(&north2);
+    matrix north3 = push_east(&north2);
     print_matrix(&north3);
     printf("%d\n", north3.zeroes);
     return 0;

@@ -101,6 +101,70 @@ matrix push_south(matrix *mat) {
     }
     return result;
 }
-       
 
+matrix push_east(matrix *mat) {
+    matrix result;
+    init_matrix(&result, 1);
+    result.zeroes = mat->zeroes;
+    for(int i = 0; i < 4; i++) {
+        int j = 3;
+        for(j = 3; j >= 0; j--) {
+            if(mat->grid[i][j] != 0) {
+                result.grid[i][3] = mat->grid[i][j];
+                j--;
+                break;
+            }
+        }
+        int combs = 0;
+        for(int k = 3; k >= 0 && j >= 0; k--) {
+            for(; j >= 0; j--) {
+                if(mat->grid[i][j] != 0) {
+                    if(mat->grid[i][j] == result.grid[i][k]) {
+                        result.grid[i][k] <<= 1;
+                        combs++;
+                    } else {
+                        result.grid[i][k - 1 + combs] = mat->grid[i][j];
+                    }
+                    j--;
+                    break;
+                }
+            }
+        }
+        result.zeroes += combs;
+    }
+    return result;
+}
+
+matrix push_west(matrix *mat) {
+    matrix result;
+    init_matrix(&result, 1);
+    result.zeroes = mat->zeroes;
+    for(int i = 0; i < 4; i++) {
+        int j = 0;
+        for(j = 0; j < 4; j++) {
+            if(mat->grid[i][j] != 0) {
+                result.grid[i][0] = mat->grid[i][j];
+                j++;
+                break;
+            }
+        }
+        int combs = 0;
+        for(int k = 0; k < 3 && j < 4; k++) {
+            for(; j < 4; j++) {
+                if(mat->grid[i][j] != 0) {
+                    if(mat->grid[i][j] == result.grid[i][k]) {
+                        result.grid[i][k] <<= 1;
+                        combs++;
+                    } else {
+                        result.grid[i][k + 1 - combs] = mat->grid[i][j];
+                    }
+                    j++;
+                    break;
+                }
+            }
+        }
+        result.zeroes += combs;
+    }
+    return result;
+}
 
