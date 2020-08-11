@@ -8,21 +8,23 @@ int main(int argc, char *argv[]) {
     time_t t;
     srand((unsigned) time(&t));
     
-    // testing code
     matrix mat;
     init_matrix(&mat);
-    //spawn_tile(&mat);
-    //spawn_tile(&mat);
-    mat.grid[0][0] = 4;
-    mat.grid[1][0] = mat.grid[2][0] = mat.grid[3][0] = 2;
-    mat.grid[1][3] = mat.grid[2][3] = 2;
-    mat.grid[0][3] = 8;
-    mat.grid[3][3] = 4;
-    mat.zeroes = 8;
+    spawn_tile(&mat);
+    spawn_tile(&mat);
     print_matrix(&mat);
     puts("");
     
-    action a = expectimax(&mat, 0, 4);
-    printf("%d %.2f\n", a.move, a.value);
+    while(1) {
+        action a = expectimax(&mat, 0, 4);
+        printf("%d %.2f\n", a.move, a.value);
+        if(a.move == 0) mat = push_north(&mat);
+        else if(a.move == 1) mat = push_south(&mat);
+        else if(a.move == 2) mat = push_east(&mat);
+        else if(a.move == 3) mat = push_west(&mat);
+        else { puts("done"); break; };
+        spawn_tile(&mat);
+        print_matrix(&mat);
+    }
     return 0;
 }

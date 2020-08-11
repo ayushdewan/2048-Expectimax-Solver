@@ -1,8 +1,21 @@
 #include "matrix.h"
 #include "expectimax.h"
 
+double max(double a, double b) {
+    return (a > b) * a + (a <= b) * b;
+}
+
 double value(matrix *state) {
-    return 1.0;
+    double sum1 = max(state->grid[0][0], state->grid[0][3]), sum2 = max(state->grid[0][0], state->grid[3][0]), 
+           sum3 = max(state->grid[3][0], state->grid[3][3]), sum4 = max(state->grid[0][3], state->grid[3][3]);
+    for(int i = 0; i < 4; i++) {
+        sum1 += state->grid[0][i];
+        sum2 += state->grid[i][0];
+        sum3 += state->grid[3][i];
+        sum4 += state->grid[i][3];
+    }
+    double result = max(max(sum1, sum2), max(sum3, sum4));
+    return result;
 }
 
 action expectimax(matrix *state, int depth, int max_depth) {
