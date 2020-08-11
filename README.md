@@ -8,6 +8,7 @@
 **TODO:**
 - [X] Implement Expectimax
 - [X] State evaluation
-- [X] Multi-threading
+- [x] Multi-threading
+- [ ] Graphing win outcomes/probabilities
 - [ ] Web App integration
 - [ ] Front-end UI
