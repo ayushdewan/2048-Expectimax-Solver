@@ -12,6 +12,7 @@ void init_matrix(matrix *mat) {
 }
 
 void spawn_tile(matrix *mat) {
+    if(mat->zeroes == 0) return;
     int pos = rand() % mat->zeroes, num = 2 + 2 * (rand() % 10 == 0), curr = -1;
     for(int i = 0; i < 4 && curr < pos; i++) {
         for(int j = 0; j < 4 && curr < pos; j++) {
