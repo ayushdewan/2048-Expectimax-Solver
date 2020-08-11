@@ -30,7 +30,7 @@ void spawn_tile(matrix *mat) {
 void print_matrix(matrix *mat) {
     for(int i = 0; i < 4; i++) {
         for(int j = 0; j < 4; j++) {
-            printf("%d ", mat->grid[i][j]);
+            printf("%d\t", mat->grid[i][j]);
         }
         printf("\n");
     }

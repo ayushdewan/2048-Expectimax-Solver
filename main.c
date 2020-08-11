@@ -7,11 +7,12 @@
 #include "expectimax.h"
 
 matrix mat;
+const double ABS_MIN = -4096;
 
 void *compute_move(void *arg) {
     matrix *mat2 = (matrix *) arg;
     double *value_ptr = (double *) malloc(sizeof(double));
-    if(is_equal(&mat, mat2)) *value_ptr = -4096;
+    if(is_equal(&mat, mat2)) *value_ptr = ABS_MIN;
     else *value_ptr = expectimax(mat2, 1, 4).value;
     return value_ptr;
 }
@@ -34,7 +35,7 @@ int main(int argc, char *argv[]) {
         }
 
         double *values[4];
-        action a = {-1, -4096};
+        action a = {-1, ABS_MIN};
         for(int i = 0; i < 4; i++) {
             pthread_join(thread_group[i], (void *)(values + i));
         }
@@ -52,6 +53,7 @@ int main(int argc, char *argv[]) {
         else mat = next_state[a.move];
         spawn_tile(&mat);
         print_matrix(&mat);
+        puts("");
     }
     return 0;
 }
