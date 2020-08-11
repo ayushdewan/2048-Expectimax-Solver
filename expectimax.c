@@ -8,13 +8,14 @@ double max(double a, double b) {
 double value(matrix *state) {
     double sum1 = max(state->grid[0][0], state->grid[0][3]), sum2 = max(state->grid[0][0], state->grid[3][0]), 
            sum3 = max(state->grid[3][0], state->grid[3][3]), sum4 = max(state->grid[0][3], state->grid[3][3]);
+    double top = max(sum1, sum3);
     for(int i = 0; i < 4; i++) {
         sum1 += state->grid[0][i];
         sum2 += state->grid[i][0];
         sum3 += state->grid[3][i];
         sum4 += state->grid[i][3];
     }
-    double result = max(max(sum1, sum2), max(sum3, sum4));
+    double result = max(max(sum1, sum2), max(sum3, sum4)) + (top / 4) * state->zeroes;
     return result;
 }
 
@@ -23,6 +24,7 @@ action expectimax(matrix *state, int depth, int max_depth) {
     if(depth == 2 * max_depth) {
         a.value = value(state);
     } else if(depth % 2 == 0) {
+        a.value = -2048 * 2;
         matrix next_state[4] = {push_north(state), push_south(state), push_east(state), push_west(state)};
         for(int i = 0; i < 4; i++) {
             if(is_equal(state, next_state + i)) continue;
