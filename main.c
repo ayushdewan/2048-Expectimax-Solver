@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
         printf("%d\n", i + 1);
         
         while(1) {
-            action a = expectimax(&mat, 0, 3);
+            action a = expectimax(&mat, 0, 4);
             if(a.move == 0) mat = push_north(&mat);
             else if(a.move == 1) mat = push_south(&mat);
             else if(a.move == 2) mat = push_east(&mat);
